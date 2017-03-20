@@ -1,6 +1,7 @@
 package com.example.mobsoft.mobsoft_lab3.ui.main;
 
-import hu.bme.aut.mobsoft.mobsoftlab.ui.Presenter;
+import com.example.mobsoft.mobsoft_lab3.ui.Presenter;
+
 
 /**
  * Created by Patrik on 2017. 03. 19..
