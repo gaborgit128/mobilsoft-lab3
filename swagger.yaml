@@ -1,0 +1,297 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "0.0.0"
+  title: SellMyStuff
+
+# Describe your paths here
+paths:
+  # This is a path endpoint. Change it.
+  /Adverts:
+    post:
+      tags:
+        - Advert
+      summary: Create a new instance of the model and persist it into the data source.
+      operationId: Advert_create
+      parameters:
+        - name: accessToken
+          in: query
+          description: User access token
+          required: true
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            $ref: '#/definitions/Advert'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Advert'
+      deprecated: false
+  '/Adverts/{id}':
+    head:
+      tags:
+        - Advert
+      summary: Check whether a model instance exists in the data source.
+      operationId: Advert_exists__head_Adverts_id
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: number
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+      deprecated: false
+    get:
+      tags:
+        - Advert
+      summary: Find a model instance by id from the data source.
+      operationId: Advert_findById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: number
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Advert'
+      deprecated: false
+    delete:
+      tags:
+        - Advert
+      summary: Delete a model instance by id from the data source.
+      operationId: Advert_deleteById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: number
+          format: JSON
+        - name: accessToken
+          in: query
+          description: User access token
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+      deprecated: false
+    put:
+      tags:
+        - Advert
+      summary: >-
+        Update attributes for a model instance and persist it into the data
+        source.
+      operationId: Advert_prototype_updateAttributes
+      parameters:
+        - name: accessToken
+          in: query
+          description: User access token
+          required: true
+          type: string
+          format: JSON
+        - name: id
+          in: path
+          description: PersistedModel id
+          required: true
+          type: number
+          format: JSON
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            $ref: '#/definitions/Advert'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/Advert'
+      deprecated: false
+  /Adverts/count:
+    get:
+      tags:
+        - Advert
+      summary: Count instances of the model.
+      operationId: Adverts_count
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+      deprecated: false
+  '/Users/{id}/adverts':
+    get:
+      tags:
+        - User
+        - Advert
+      summary: Queries favorites of User.
+      operationId: User_prototype___get__myadverts
+      parameters:
+        - name: id
+          in: path
+          description: User id
+          required: true
+          type: number
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Advert'
+      deprecated: false
+  '/Users/{id}/adverts/count':
+    get:
+      tags:
+        - User
+        - Advert
+      summary: Counts favorites of SziaUser.
+      operationId: User_prototype___count__myadverts
+      parameters:
+        - name: id
+          in: path
+          description: User id
+          required: true
+          type: number
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+      deprecated: false
+  /Users:
+    post:
+      tags:
+        - User
+      summary: Create a new instance of the model and persist it into the data source.
+      operationId: User_create
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            $ref: '#/definitions/Credential'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/User'
+      deprecated: false
+  '/Users/{id}':
+    get:
+      tags:
+        - User
+      summary: Find a model instance by id from the data source.
+      operationId: User_findById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: number
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/User'
+      deprecated: false
+  /Users/login:
+    post:
+      tags:
+        - User
+      summary: Login a user with username/email and password.
+      operationId: User_login
+      parameters:
+        - name: credentials
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Credential'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            description: >-
+              The response body contains properties of the AccessToken created
+              on login.
+            type: object
+      deprecated: false
+  /Users/logout:
+    post:
+      tags:
+        - User
+      summary: Logout a user with access token.
+      operationId: User_logout
+      parameters:
+        - name: accessToken
+          in: query
+          description: User access token
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '204':
+          description: Request was successful
+      deprecated: false
+definitions:
+  Credential:
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+  Advert:
+    properties:
+      username:
+        type: string
+      title:
+        type: string
+      cost:
+        type: number
+        format: double
+      description:
+        type: string
+      id:
+        type: number
+        format: double
+    required:
+      - username
+      - title
+      - cost
+    additionalProperties: false
+  User:
+    properties:
+      username:
+        type: string
+      id:
+        type: number
+        format: double
+tags:
+  - name: Advert
+  - name: User
