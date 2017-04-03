@@ -268,8 +268,8 @@ definitions:
         type: string
   Advert:
     properties:
-      username:
-        type: string
+      user:
+         $ref: '#/definitions/User'
       title:
         type: string
       cost:
@@ -281,7 +281,7 @@ definitions:
         type: number
         format: double
     required:
-      - username
+      - user
       - title
       - cost
     additionalProperties: false
