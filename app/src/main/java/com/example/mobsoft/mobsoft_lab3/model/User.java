@@ -13,6 +13,11 @@ public class User {
 
     private Integer id;
 
+    public User(String username, Integer id){
+        this.username = username;
+        this.id = id;
+    }
+
 
     public String getUsername() {
         return username;
