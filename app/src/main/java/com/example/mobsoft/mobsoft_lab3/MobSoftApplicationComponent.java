@@ -1,5 +1,10 @@
 package com.example.mobsoft.mobsoft_lab3;
 
+import com.example.mobsoft.mobsoft_lab3.interactor.InteractorModule;
+import com.example.mobsoft.mobsoft_lab3.interactor.add.AddAvertInteractor;
+import com.example.mobsoft.mobsoft_lab3.interactor.list.GetAdvertsInteractor;
+import com.example.mobsoft.mobsoft_lab3.interactor.mylist.GetMyAdvertsInteractor;
+import com.example.mobsoft.mobsoft_lab3.repository.RepositoryModule;
 import com.example.mobsoft.mobsoft_lab3.ui.UIModule;
 import com.example.mobsoft.mobsoft_lab3.ui.about.AboutActivity;
 import com.example.mobsoft.mobsoft_lab3.ui.add.AddActivity;
@@ -13,8 +18,11 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {UIModule.class})
+@Component(modules = {UIModule.class, RepositoryModule.class, InteractorModule.class})
 public interface MobSoftApplicationComponent {
+
+    void inject(MobSoftApplication mobSoftApplication);
+
     void inject(MainActivity mainActivity);
 
     void inject(LoginActivity loginActivity);
@@ -26,4 +34,10 @@ public interface MobSoftApplicationComponent {
     void inject(ListActivity listActivity);
 
     void inject(AboutActivity aboutActivity);
+
+    void inject(AddAvertInteractor addAvertInteractor);
+
+    void inject(GetAdvertsInteractor getAdvertsInteractor);
+
+    void inject(GetMyAdvertsInteractor getMyAdvertsInteractor);
 }
