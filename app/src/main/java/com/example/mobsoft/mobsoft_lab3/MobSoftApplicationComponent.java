@@ -8,10 +8,15 @@ import com.example.mobsoft.mobsoft_lab3.repository.RepositoryModule;
 import com.example.mobsoft.mobsoft_lab3.ui.UIModule;
 import com.example.mobsoft.mobsoft_lab3.ui.about.AboutActivity;
 import com.example.mobsoft.mobsoft_lab3.ui.add.AddActivity;
+import com.example.mobsoft.mobsoft_lab3.ui.add.AddPresenter;
 import com.example.mobsoft.mobsoft_lab3.ui.list.ListActivity;
+import com.example.mobsoft.mobsoft_lab3.ui.list.ListPresenter;
+import com.example.mobsoft.mobsoft_lab3.ui.login.LoginPresenter;
 import com.example.mobsoft.mobsoft_lab3.ui.main.MainActivity;
 import com.example.mobsoft.mobsoft_lab3.ui.login.LoginActivity;
+import com.example.mobsoft.mobsoft_lab3.ui.main.MainPresenter;
 import com.example.mobsoft.mobsoft_lab3.ui.mylist.MyListActivity;
+import com.example.mobsoft.mobsoft_lab3.ui.mylist.MyListPresenter;
 
 import javax.inject.Singleton;
 
@@ -40,4 +45,14 @@ public interface MobSoftApplicationComponent {
     void inject(GetAdvertsInteractor getAdvertsInteractor);
 
     void inject(GetMyAdvertsInteractor getMyAdvertsInteractor);
+
+    void inject(MainPresenter mainPresenter);
+
+    void inject(MyListPresenter myListPresenter);
+
+    void inject(LoginPresenter loginPresenter);
+
+    void inject(ListPresenter listPresenter);
+
+    void inject(AddPresenter addPresenter);
 }

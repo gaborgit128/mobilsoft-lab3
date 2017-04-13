@@ -10,10 +10,14 @@ import com.example.mobsoft.mobsoft_lab3.ui.main.MainPresenter;
 import com.example.mobsoft.mobsoft_lab3.ui.login.LoginPresenter;
 import com.example.mobsoft.mobsoft_lab3.ui.mylist.MyListPresenter;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import de.greenrobot.event.EventBus;
 
 @Module
 public class UIModule {
@@ -62,6 +66,18 @@ public class UIModule {
     @Singleton
     public AboutPresenter provideAboutPresenter() {
         return new AboutPresenter();
+    }
+
+    @Provides
+    @Singleton
+    public EventBus provideEventBus() {
+        return EventBus.getDefault();
+    }
+
+    @Provides
+    @Singleton
+    public Executor provideExecutor() {
+        return Executors.newFixedThreadPool(1);
     }
 
 }
