@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">Mobsoft-lab3</string>
+    <string name="login_username_hint">Username</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_login">LOGIN</string>
+    <string name="login_advert_app_title">Sell My Stuff</string>
+
+    <string name="main_label_creating_advert">Make new advertisement to sell your stuff!</string>
+    <string name="main_creating_advert">MAKE ADVERT</string>
+
+    <string name="main_label_my_advert">Check your advertisements!</string>
+    <string name="main_my_advert">MY ADVERTS</string>
+
+    <string name="main_label_all_advert">Find what you are looking for!</string>
+    <string name="main_all_advert">SHOW ADVERTS</string>
+
+    <string name="main_label_about">Show more information about the app!</string>
+    <string name="main_about">ABOUT</string>
+    <string name="about_version">App version v1.0</string>
+    <string name="about_rights">All rights reserved</string>
+    <string name="about_year_of_making">2017</string>
+    <string name="list_item_advert_item">Item:</string>
+    <string name="list_item_advert_costs">Costs:</string>
+    <string name="list_item_advert_description">Description:</string>
+    <string name="list_item_advert_modify">MODIFY</string>
+    <string name="list_item_advert_delete">DELETE</string>
+    <string name="add_advert_title_hint">Title</string>
+    <string name="add_advert_cost_hint">Cost</string>
+    <string name="add_advert_description_hint">Description</string>
+    <string name="add_advert_add">ADD</string>
 </resources>

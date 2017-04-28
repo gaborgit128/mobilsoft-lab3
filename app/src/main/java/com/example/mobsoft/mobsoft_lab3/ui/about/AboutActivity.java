@@ -6,10 +6,10 @@ import android.widget.Toast;
 
 import com.example.mobsoft.mobsoft_lab3.MobSoftApplication;
 import com.example.mobsoft.mobsoft_lab3.R;
-import com.example.mobsoft.mobsoft_lab3.ui.main.MainPresenter;
-import com.example.mobsoft.mobsoft_lab3.ui.main.MainScreen;
 
 import javax.inject.Inject;
+
+import butterknife.ButterKnife;
 
 /**
  * Created by Android on 2017. 03. 24..
@@ -23,7 +23,9 @@ public class AboutActivity extends AppCompatActivity implements AboutScreen {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_about);
+        ButterKnife.bind(this);
+
 
         MobSoftApplication.injector.inject(this);
     }

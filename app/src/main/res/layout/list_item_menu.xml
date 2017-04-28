@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_menu_background"
+    android:orientation="vertical"
+    android:paddingBottom="17dp">
+
+    <TextView
+        android:id="@+id/menu_item_description"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        tools:text="@string/main_label_creating_advert"/>
+
+    <Button
+        android:id="@+id/menu_item_action"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/app_green"
+        android:textColor="@android:color/white"
+        tools:text="@string/main_creating_advert"/>
+</LinearLayout>
