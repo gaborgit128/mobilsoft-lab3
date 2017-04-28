@@ -44,4 +44,7 @@ public class MainPresenter extends Presenter<MainScreen> {
         bus.unregister(this);
         super.detachScreen();
     }
+
+    public void onEvent(String s) {
+    }
 }

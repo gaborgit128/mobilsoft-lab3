@@ -1,7 +1,6 @@
 package com.example.mobsoft.mobsoft_lab3.ui.login;
 
 import com.example.mobsoft.mobsoft_lab3.interactor.login.LoginInteractor;
-import com.example.mobsoft.mobsoft_lab3.interactor.main.MainInteractor;
 import com.example.mobsoft.mobsoft_lab3.ui.Presenter;
 
 import java.util.concurrent.Executor;
@@ -42,5 +41,8 @@ public class LoginPresenter extends Presenter<LoginScreen> {
     public void detachScreen() {
         bus.unregister(this);
         super.detachScreen();
+    }
+
+    public void onEvent(String s) {
     }
 }

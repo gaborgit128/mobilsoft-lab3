@@ -45,4 +45,7 @@ public class MyListPresenter extends Presenter<MyListScreen> {
         bus.unregister(this);
         super.detachScreen();
     }
+
+    public void onEvent(String s) {
+    }
 }

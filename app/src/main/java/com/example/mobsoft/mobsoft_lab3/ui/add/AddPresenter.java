@@ -42,4 +42,7 @@ public class AddPresenter extends Presenter<AddScreen> {
         bus.unregister(this);
         super.detachScreen();
     }
+
+    public void onEvent(String s) {
+    }
 }
