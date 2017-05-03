@@ -39,7 +39,7 @@ public class AdvertTest {
         mianPresenter = new MainPresenter();
     }
 
-    @Test
+//    @Test
     public void testTodo() {
         MainScreen mainScreen = mock(MainScreen.class);
         mianPresenter.attachScreen(mainScreen);
