@@ -1,5 +1,6 @@
 package com.example.mobsoft.mobsoft_lab3.model;
 
+import com.google.gson.annotations.SerializedName;
 import com.orm.dsl.Table;
 
 /**
@@ -9,8 +10,10 @@ import com.orm.dsl.Table;
 @Table
 public class Credential {
 
+    @SerializedName("username")
     private String username;
 
+    @SerializedName("password")
     private String password;
 
     public Credential(String username, String password){

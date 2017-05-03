@@ -1,5 +1,6 @@
 package com.example.mobsoft.mobsoft_lab3.model;
 
+import com.google.gson.annotations.SerializedName;
 import com.orm.dsl.Table;
 
 /**
@@ -9,12 +10,16 @@ import com.orm.dsl.Table;
 @Table
 public class Advert {
 
+    @SerializedName("user")
     private User user;
 
+    @SerializedName("title")
     private String title;
 
+    @SerializedName("cost")
     private Integer cost;
 
+    @SerializedName("description")
     private String description;
 
     private Integer id;
