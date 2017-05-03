@@ -31,7 +31,7 @@ import static com.example.mobsoft.mobsoft_lab3.TestHelper.setTestInjector;
 @Config(constants = BuildConfig.class, sdk = 21)
 public class AdvertTest {
 
-    private MainPresenter mianPresenter;
+/*    private MainPresenter mianPresenter;
 
     @Before
     public void setup() throws Exception {
@@ -39,7 +39,7 @@ public class AdvertTest {
         mianPresenter = new MainPresenter();
     }
 
-//    @Test
+    @Test
     public void testTodo() {
         MainScreen mainScreen = mock(MainScreen.class);
         mianPresenter.attachScreen(mainScreen);
@@ -56,5 +56,5 @@ public class AdvertTest {
     @After
     public void tearDown() {
         mianPresenter.detachScreen();
-    }
+    }*/
 }
