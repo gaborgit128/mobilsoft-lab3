@@ -47,4 +47,13 @@ public class MainPresenter extends Presenter<MainScreen> {
 
     public void onEvent(String s) {
     }
+
+    public void getList() {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mainInteractor.notify();
+            }
+        });
+    }
 }

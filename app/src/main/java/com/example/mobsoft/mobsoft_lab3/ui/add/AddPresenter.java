@@ -2,6 +2,7 @@ package com.example.mobsoft.mobsoft_lab3.ui.add;
 
 import com.example.mobsoft.mobsoft_lab3.interactor.add.AddAvertInteractor;
 import com.example.mobsoft.mobsoft_lab3.interactor.list.GetAdvertsInteractor;
+import com.example.mobsoft.mobsoft_lab3.model.Advert;
 import com.example.mobsoft.mobsoft_lab3.ui.Presenter;
 
 import java.util.concurrent.Executor;
@@ -44,5 +45,14 @@ public class AddPresenter extends Presenter<AddScreen> {
     }
 
     public void onEvent(String s) {
+    }
+
+    public void addAdvert() {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                addAvertInteractor.addAdverts(new Advert("t", 10, "x", null));
+            }
+        });
     }
 }

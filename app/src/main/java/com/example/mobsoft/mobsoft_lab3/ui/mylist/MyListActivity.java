@@ -55,7 +55,7 @@ public class MyListActivity extends AppCompatActivity implements MyListScreen {
         List<Advert> adverts = new ArrayList<>();
 
         adverts.add(new Advert("Ora", 2000, "Draga ora elado jo penzert!!", null));
-        adverts.add(new Advert("Ora", 2000, "Draga ora elado jo penzert!!", null));
+        adverts.add(new Advert("Ora", 3000, "Draga ora elado jo penzert!!", null));
 
         if (isOnlyMyList) {
             adverts.add(new Advert("Medve", 23000, "Vad medve elado!!", null));

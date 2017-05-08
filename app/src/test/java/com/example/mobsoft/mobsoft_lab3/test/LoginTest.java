@@ -1,10 +1,8 @@
 package com.example.mobsoft.mobsoft_lab3.test;
 
-/**
- * Created by Android on 2017. 05. 03..
- */
-
 import com.example.mobsoft.mobsoft_lab3.BuildConfig;
+import com.example.mobsoft.mobsoft_lab3.ui.login.LoginPresenter;
+import com.example.mobsoft.mobsoft_lab3.ui.login.LoginScreen;
 import com.example.mobsoft.mobsoft_lab3.ui.main.MainPresenter;
 import com.example.mobsoft.mobsoft_lab3.ui.main.MainScreen;
 import com.example.mobsoft.mobsoft_lab3.utils.RobolectricDaggerTestRunner;
@@ -18,43 +16,40 @@ import org.robolectric.annotation.Config;
 
 import java.util.List;
 
-
-
+import static com.example.mobsoft.mobsoft_lab3.TestHelper.setTestInjector;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
-import static com.example.mobsoft.mobsoft_lab3.TestHelper.setTestInjector;
-
+/**
+ * Created by Android on 2017. 05. 08..
+ */
 @RunWith(RobolectricDaggerTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)
-public class AdvertTest {
-
-    private MainPresenter mainPresenter;
+public class LoginTest {
+    private LoginPresenter loginPresenter;
 
     @Before
     public void setup() throws Exception {
         setTestInjector();
-        mainPresenter = new MainPresenter();
+        loginPresenter = new LoginPresenter();
     }
 
     @Test
     public void testTodo() {
-        MainScreen mainScreen = mock(MainScreen.class);
-        mainPresenter.attachScreen(mainScreen);
+        LoginScreen loginScreen = mock(LoginScreen.class);
+        loginPresenter.attachScreen(loginScreen);
         //mianPresenter.getFavourites();
 
         ArgumentCaptor<String> todosCaptor = ArgumentCaptor.forClass(String.class);
-        verify(mainScreen, times(2)).showMessage(todosCaptor.capture());
+        verify(loginScreen, times(2)).showMessage(todosCaptor.capture());
 
         List<String> capturedTodos = todosCaptor.getAllValues();
-       // assertEquals("todo one", capturedTodos.get(0));
-       // assertEquals("todo two", capturedTodos.get(1));
     }
 
     @After
     public void tearDown() {
-        mainPresenter.detachScreen();
+        loginPresenter.detachScreen();
     }
 }
