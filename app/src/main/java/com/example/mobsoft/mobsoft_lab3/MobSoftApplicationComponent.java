@@ -2,9 +2,9 @@ package com.example.mobsoft.mobsoft_lab3;
 
 import com.example.mobsoft.mobsoft_lab3.interactor.InteractorModule;
 import com.example.mobsoft.mobsoft_lab3.interactor.add.AddAvertInteractor;
-import com.example.mobsoft.mobsoft_lab3.interactor.list.GetAdvertsInteractor;
+import com.example.mobsoft.mobsoft_lab3.interactor.login.LoginInteractor;
 import com.example.mobsoft.mobsoft_lab3.interactor.mylist.GetMyAdvertsInteractor;
-import com.example.mobsoft.mobsoft_lab3.network.NetworkModule;
+import com.example.mobsoft.mobsoft_lab3.mock.MockNetworkModule;
 import com.example.mobsoft.mobsoft_lab3.repository.RepositoryModule;
 import com.example.mobsoft.mobsoft_lab3.ui.UIModule;
 import com.example.mobsoft.mobsoft_lab3.ui.about.AboutActivity;
@@ -22,7 +22,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {UIModule.class, RepositoryModule.class, InteractorModule.class, NetworkModule.class})
+@Component(modules = {UIModule.class, RepositoryModule.class, InteractorModule.class, MockNetworkModule.class})
 public interface MobSoftApplicationComponent {
 
     void inject(MobSoftApplication mobSoftApplication);
@@ -39,8 +39,6 @@ public interface MobSoftApplicationComponent {
 
     void inject(AddAvertInteractor addAvertInteractor);
 
-    void inject(GetAdvertsInteractor getAdvertsInteractor);
-
     void inject(GetMyAdvertsInteractor getMyAdvertsInteractor);
 
     void inject(MainPresenter mainPresenter);
@@ -50,4 +48,6 @@ public interface MobSoftApplicationComponent {
     void inject(LoginPresenter loginPresenter);
 
     void inject(AddPresenter addPresenter);
+
+    void inject(LoginInteractor loginInteractor);
 }

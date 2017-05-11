@@ -34,11 +34,13 @@ public class MockInterceptor implements Interceptor {
         Headers headers = request.headers();
 
 
-        if (uri.getPath().startsWith(NetworkConfig.ENDPOINT_PREFIX + "Todos")) {
+        if (uri.getPath().startsWith(NetworkConfig.ENDPOINT_PREFIX + "Adverts")) {
             return AdvertMock.process(request);
         }
 
-
+        if (uri.getPath().startsWith(NetworkConfig.ENDPOINT_PREFIX + "Users")) {
+            return UserMock.process(request);
+        }
 
 
         return makeResponse(request, headers, 404, "Unknown");

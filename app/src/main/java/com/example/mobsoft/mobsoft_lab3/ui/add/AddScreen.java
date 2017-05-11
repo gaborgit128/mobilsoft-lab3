@@ -6,4 +6,6 @@ package com.example.mobsoft.mobsoft_lab3.ui.add;
 
 public interface AddScreen {
     void showMessage(String text);
+
+    void advertAdded();
 }

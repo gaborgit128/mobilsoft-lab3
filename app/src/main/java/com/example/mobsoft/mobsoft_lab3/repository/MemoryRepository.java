@@ -21,12 +21,12 @@ public class MemoryRepository implements Repository {
 
     @Override
     public void open(Context context) {
-        Advert advert1 = new Advert("MyStuff1",100 , "todo one", 1);
-        Advert advert2 = new Advert("MyStuff2",100 , "todo two", 2);
+       /* Advert advert1 = new Advert("MyStuff1",100 , "todo one");
+        Advert advert2 = new Advert("MyStuff2",100 , "todo two");
 
         adverts = new ArrayList<>();
         adverts.add(advert1);
-        adverts.add(advert2);
+        adverts.add(advert2);*/
     }
 
     @Override

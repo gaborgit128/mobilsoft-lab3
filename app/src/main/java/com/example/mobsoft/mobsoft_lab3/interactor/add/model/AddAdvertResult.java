@@ -1,12 +1,10 @@
-package com.example.mobsoft.mobsoft_lab3.interactor.add.events;
-
-import com.example.mobsoft.mobsoft_lab3.interactor.base.BaseEvent;
+package com.example.mobsoft.mobsoft_lab3.interactor.add.model;
 
 /**
- * Created by Android on 2017. 04. 13..
+ * Created by Android on 2017. 05. 11..
  */
 
-public class AddAdvertEvent extends BaseEvent {
+public class AddAdvertResult {
 
     private boolean isAdvertAddedSuccessfully;
 

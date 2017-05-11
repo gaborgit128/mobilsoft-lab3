@@ -1,7 +1,7 @@
 package com.example.mobsoft.mobsoft_lab3.ui.add;
 
 import com.example.mobsoft.mobsoft_lab3.interactor.add.AddAvertInteractor;
-import com.example.mobsoft.mobsoft_lab3.interactor.list.GetAdvertsInteractor;
+import com.example.mobsoft.mobsoft_lab3.interactor.add.events.AddAdvertEvent;
 import com.example.mobsoft.mobsoft_lab3.model.Advert;
 import com.example.mobsoft.mobsoft_lab3.ui.Presenter;
 
@@ -44,14 +44,20 @@ public class AddPresenter extends Presenter<AddScreen> {
         super.detachScreen();
     }
 
-    public void onEvent(String s) {
+    public void onEventMainThread(AddAdvertEvent addAdvertEvent) {
+        if (addAdvertEvent.isAdvertAddedSuccessfully()) {
+            screen.advertAdded();
+        } else {
+            screen.showMessage("Advert adding failed");
+        }
     }
 
-    public void addAdvert() {
+    public void addAdvert(final String title, final String description, final int cost) {
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                addAvertInteractor.addAdverts(new Advert("t", 10, "x", null));
+                Advert advert = new Advert(title, cost, description);
+                addAvertInteractor.addAdverts(advert);
             }
         });
     }

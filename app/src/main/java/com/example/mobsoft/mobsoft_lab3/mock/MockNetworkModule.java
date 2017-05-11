@@ -6,6 +6,7 @@ package com.example.mobsoft.mobsoft_lab3.mock;
 
 import com.example.mobsoft.mobsoft_lab3.network.NetworkModule;
 import com.example.mobsoft.mobsoft_lab3.network.advert.AdvertApi;
+import com.example.mobsoft.mobsoft_lab3.network.advert.UserApi;
 
 import java.io.IOException;
 
@@ -53,10 +54,14 @@ public class MockNetworkModule {
 
     @Provides
     @Singleton
-    public AdvertApi provideAuthApi(Retrofit retrofit) {
+    public AdvertApi provideAdvertApi(Retrofit retrofit) {
         return networkModule.provideAdvertApi(retrofit);
     }
 
-
+    @Provides
+    @Singleton
+    public UserApi provideUserApi(Retrofit retrofit) {
+        return networkModule.provideUserApi(retrofit);
+    }
 
 }

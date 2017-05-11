@@ -67,12 +67,17 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
             return;
         }
 
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        loginPresenter.login(userName.getText().toString(), password.getText().toString());
     }
 
     @Override
     public void showMessage(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void login() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

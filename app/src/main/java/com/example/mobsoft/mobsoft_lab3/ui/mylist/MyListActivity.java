@@ -11,7 +11,6 @@ import com.example.mobsoft.mobsoft_lab3.R;
 import com.example.mobsoft.mobsoft_lab3.model.Advert;
 import com.example.mobsoft.mobsoft_lab3.ui.mylist.adapter.AllListAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -33,7 +32,7 @@ public class MyListActivity extends AppCompatActivity implements MyListScreen {
     MyListPresenter myListresenter;
 
     @BindView(R.id.adverts_list)
-    RecyclerView adverts;
+    RecyclerView advertsRecycler;
 
     private boolean isOnlyMyList;
 
@@ -47,27 +46,19 @@ public class MyListActivity extends AppCompatActivity implements MyListScreen {
 
         isOnlyMyList = getIntent().getIntExtra(LIST_TYPE, ALL_ADVERTS) == MY_ADVERTS;
 
-        adverts.setLayoutManager(new LinearLayoutManager(this));
-        adverts.setAdapter(new AllListAdapter(generateMockData(isOnlyMyList), isOnlyMyList));
-    }
-
-    private List<Advert> generateMockData(boolean isOnlyMyList) {
-        List<Advert> adverts = new ArrayList<>();
-
-        adverts.add(new Advert("Ora", 2000, "Draga ora elado jo penzert!!", null));
-        adverts.add(new Advert("Ora", 3000, "Draga ora elado jo penzert!!", null));
-
-        if (isOnlyMyList) {
-            adverts.add(new Advert("Medve", 23000, "Vad medve elado!!", null));
-        }
-
-        return adverts;
+        advertsRecycler.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         myListresenter.attachScreen(this);
+
+        if (isOnlyMyList) {
+            myListresenter.getMyAdverts();
+        } else {
+            myListresenter.showAllAdverts();
+        }
     }
 
     @Override
@@ -79,5 +70,10 @@ public class MyListActivity extends AppCompatActivity implements MyListScreen {
     @Override
     public void showMessage(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void displayAdverts(List<Advert> adverts) {
+        advertsRecycler.setAdapter(new AllListAdapter(adverts, isOnlyMyList));
     }
 }

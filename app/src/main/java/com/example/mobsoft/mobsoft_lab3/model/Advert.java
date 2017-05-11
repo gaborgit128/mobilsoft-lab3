@@ -24,11 +24,10 @@ public class Advert {
 
     private Integer id;
 
-    public Advert(String title, Integer cost, String description, Integer id){
+    public Advert(String title, Integer cost, String description){
         this.title = title;
         this.cost = cost;
         this.description = description;
-        this.id = id;
     }
 
     public User getUser() {

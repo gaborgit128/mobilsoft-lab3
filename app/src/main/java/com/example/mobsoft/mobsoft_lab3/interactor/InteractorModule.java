@@ -5,7 +5,6 @@ package com.example.mobsoft.mobsoft_lab3.interactor;
  */
 
 import com.example.mobsoft.mobsoft_lab3.interactor.add.AddAvertInteractor;
-import com.example.mobsoft.mobsoft_lab3.interactor.list.GetAdvertsInteractor;
 import com.example.mobsoft.mobsoft_lab3.interactor.login.LoginInteractor;
 import com.example.mobsoft.mobsoft_lab3.interactor.main.MainInteractor;
 import com.example.mobsoft.mobsoft_lab3.interactor.mylist.GetMyAdvertsInteractor;
@@ -20,11 +19,6 @@ public class InteractorModule {
     @Provides
     public AddAvertInteractor provideAddAdvert() {
         return new AddAvertInteractor();
-    }
-
-    @Provides
-    public GetAdvertsInteractor provideAdverts() {
-        return new GetAdvertsInteractor();
     }
 
     @Provides

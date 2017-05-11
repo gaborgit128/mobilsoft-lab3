@@ -5,6 +5,7 @@ package com.example.mobsoft.mobsoft_lab3.network;
  */
 
 import com.example.mobsoft.mobsoft_lab3.network.advert.AdvertApi;
+import com.example.mobsoft.mobsoft_lab3.network.advert.UserApi;
 import com.example.mobsoft.mobsoft_lab3.utils.GsonHelper;
 
 import javax.inject.Singleton;
@@ -42,6 +43,12 @@ public class NetworkModule {
     @Singleton
     public AdvertApi provideAdvertApi(Retrofit retrofit) {
         return retrofit.create(AdvertApi.class);
+    }
+
+    @Provides
+    @Singleton
+    public UserApi provideUserApi(Retrofit retrofit) {
+        return retrofit.create(UserApi.class);
     }
 
 

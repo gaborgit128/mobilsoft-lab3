@@ -6,4 +6,6 @@ package com.example.mobsoft.mobsoft_lab3.ui.login;
 
 public interface LoginScreen {
     void showMessage(String text);
+
+    void login();
 }

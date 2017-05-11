@@ -17,7 +17,7 @@ public class MobSoftApplication extends Application {
     public void setInjector(MobSoftApplicationComponent appComponent) {
         injector = appComponent;
         injector.inject(this);
-        repository.open(getApplicationContext());
+        //repository.open(getApplicationContext());
     }
 
     @Override
@@ -31,6 +31,6 @@ public class MobSoftApplication extends Application {
                         ).build();
 
         injector.inject(this);
-        repository.open(getApplicationContext());
+        //repository.open(getApplicationContext());
     }
 }

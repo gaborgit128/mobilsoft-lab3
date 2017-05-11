@@ -1,16 +1,16 @@
 package com.example.mobsoft.mobsoft_lab3.interactor.mylist;
 
 import com.example.mobsoft.mobsoft_lab3.MobSoftApplication;
-import com.example.mobsoft.mobsoft_lab3.interactor.list.events.GetAdvertsEvent;
-import com.example.mobsoft.mobsoft_lab3.interactor.mylist.events.RemoveMyAdvertEvent;
-import com.example.mobsoft.mobsoft_lab3.model.Advert;
-import com.example.mobsoft.mobsoft_lab3.repository.Repository;
-
-import java.util.List;
+import com.example.mobsoft.mobsoft_lab3.interactor.mylist.events.GetAdvertsEvent;
+import com.example.mobsoft.mobsoft_lab3.interactor.mylist.model.AdvertListResponse;
+import com.example.mobsoft.mobsoft_lab3.interactor.mylist.model.FetchAdvertRequest;
+import com.example.mobsoft.mobsoft_lab3.network.advert.AdvertApi;
 
 import javax.inject.Inject;
 
 import de.greenrobot.event.EventBus;
+import retrofit2.Call;
+import retrofit2.Response;
 
 /**
  * Created by Android on 2017. 04. 13..
@@ -19,7 +19,7 @@ import de.greenrobot.event.EventBus;
 public class GetMyAdvertsInteractor {
 
     @Inject
-    Repository repository;
+    AdvertApi advertApi;
     @Inject
     EventBus bus;
 
@@ -27,35 +27,21 @@ public class GetMyAdvertsInteractor {
         MobSoftApplication.injector.inject(this);
     }
 
-    public void getMyAdverts() {
+    public void fetchAdverts(FetchAdvertRequest fetchAdvertRequest) {
         GetAdvertsEvent event = new GetAdvertsEvent();
+
+        Call<AdvertListResponse> artistsQueryCall = advertApi.fetchList(fetchAdvertRequest);
         try {
-            List<Advert> adverts = repository.getAdverts();
-            event.setAdverts(adverts);
-            bus.post(event);
+            Response<AdvertListResponse> response = artistsQueryCall.execute();
+            if (response.code() != 200) {
+                throw new Exception("Result code is not 200");
+            }
+            event.setCode(response.code());
+            event.setAdverts(response.body().getAdvertList());
+            EventBus.getDefault().post(event);
         } catch (Exception e) {
             event.setThrowable(e);
-            bus.post(event);
-        }
-    }
-
-    public void updateMyAdvert(List<Advert> adverts) {
-        try {
-            repository.updateAdverts(adverts);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void removeMyAdvert(Advert advert) {
-        RemoveMyAdvertEvent event = new RemoveMyAdvertEvent();
-        event.setAdvert(advert);
-        try {
-            repository.removeAdvert(advert);
-            bus.post(event);
-        } catch (Exception e) {
-            event.setThrowable(e);
-            bus.post(event);
+            EventBus.getDefault().post(event);
         }
     }
 }
