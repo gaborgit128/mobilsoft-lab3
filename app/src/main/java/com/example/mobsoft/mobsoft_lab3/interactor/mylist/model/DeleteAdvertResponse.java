@@ -1,13 +1,10 @@
-package com.example.mobsoft.mobsoft_lab3.interactor.mylist.events;
-
-import com.example.mobsoft.mobsoft_lab3.interactor.base.BaseEvent;
+package com.example.mobsoft.mobsoft_lab3.interactor.mylist.model;
 
 /**
- * Created by Android on 2017. 04. 13..
+ * Created by Android on 2017. 05. 14..
  */
 
-public class RemoveMyAdvertEvent extends BaseEvent {
-
+public class DeleteAdvertResponse {
     private boolean isDeletionSuccessfull;
 
     public boolean isDeletionSuccessfull() {

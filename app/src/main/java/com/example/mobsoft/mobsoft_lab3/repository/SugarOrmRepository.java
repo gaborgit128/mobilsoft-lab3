@@ -39,8 +39,6 @@ public class SugarOrmRepository implements Repository {
         SugarRecord.saveInTx(advert);
     }
 
-
-    //TODO
     @Override
     public void updateAdverts(List<Advert> adverts) {
         List<Advert> favourites = getAdverts();

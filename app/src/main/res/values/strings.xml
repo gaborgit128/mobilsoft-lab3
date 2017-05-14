@@ -28,4 +28,6 @@
     <string name="add_advert_cost_hint">Cost</string>
     <string name="add_advert_description_hint">Description</string>
     <string name="add_advert_add">ADD</string>
+    <string name="my_list_advert_successfully_deleted">Advert was succesfully removed</string>
+    <string name="my_list_advert_deletion_failed">Event deletion failed</string>
 </resources>

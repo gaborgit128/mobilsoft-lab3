@@ -2,7 +2,10 @@ package com.example.mobsoft.mobsoft_lab3.interactor.mylist;
 
 import com.example.mobsoft.mobsoft_lab3.MobSoftApplication;
 import com.example.mobsoft.mobsoft_lab3.interactor.mylist.events.GetAdvertsEvent;
+import com.example.mobsoft.mobsoft_lab3.interactor.mylist.events.RemoveMyAdvertEvent;
 import com.example.mobsoft.mobsoft_lab3.interactor.mylist.model.AdvertListResponse;
+import com.example.mobsoft.mobsoft_lab3.interactor.mylist.model.DeleteAdvertRequest;
+import com.example.mobsoft.mobsoft_lab3.interactor.mylist.model.DeleteAdvertResponse;
 import com.example.mobsoft.mobsoft_lab3.interactor.mylist.model.FetchAdvertRequest;
 import com.example.mobsoft.mobsoft_lab3.network.advert.AdvertApi;
 
@@ -38,6 +41,26 @@ public class GetMyAdvertsInteractor {
             }
             event.setCode(response.code());
             event.setAdverts(response.body().getAdvertList());
+            EventBus.getDefault().post(event);
+        } catch (Exception e) {
+            event.setThrowable(e);
+            EventBus.getDefault().post(event);
+        }
+    }
+
+    public void deleteAdvert(int advertId) {
+        DeleteAdvertRequest deleteAdvertRequest = new DeleteAdvertRequest();
+        deleteAdvertRequest.setAdvertId(advertId);
+        RemoveMyAdvertEvent event = new RemoveMyAdvertEvent();
+
+        Call<DeleteAdvertResponse> artistsQueryCall = advertApi.deleteAdvert(deleteAdvertRequest);
+        try {
+            Response<DeleteAdvertResponse> response = artistsQueryCall.execute();
+            if (response.code() != 200) {
+                throw new Exception("Result code is not 200");
+            }
+            event.setCode(response.code());
+            event.setDeletionSuccessfull(response.body().isDeletionSuccessfull());
             EventBus.getDefault().post(event);
         } catch (Exception e) {
             event.setThrowable(e);

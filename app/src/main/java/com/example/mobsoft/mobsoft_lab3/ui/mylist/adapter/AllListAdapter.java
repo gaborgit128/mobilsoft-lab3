@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.mobsoft.mobsoft_lab3.R;
 import com.example.mobsoft.mobsoft_lab3.model.Advert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -20,8 +21,15 @@ public class AllListAdapter extends RecyclerView.Adapter<AllListAdapter.AllListV
     private List<Advert> advertList;
     private boolean isOnlyMyList;
 
+    private OnAdvertClickListener onAdvertClickListener;
+
     public AllListAdapter(List<Advert> advertList, boolean isOnlyMyList) {
-        this.advertList = advertList;
+        if (advertList == null) {
+            this.advertList = new ArrayList<>();
+        } else {
+            this.advertList = advertList;
+        }
+
         this.isOnlyMyList = isOnlyMyList;
     }
 
@@ -32,7 +40,7 @@ public class AllListAdapter extends RecyclerView.Adapter<AllListAdapter.AllListV
     }
 
     @Override
-    public void onBindViewHolder(AllListViewHolder holder, int position) {
+    public void onBindViewHolder(final AllListViewHolder holder, int position) {
         final Advert advertItem = advertList.get(position);
 
         holder.itemName.setText(advertItem.getTitle());
@@ -41,16 +49,45 @@ public class AllListAdapter extends RecyclerView.Adapter<AllListAdapter.AllListV
 
         if (isOnlyMyList) {
             holder.modify.setVisibility(View.VISIBLE);
+            holder.modify.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onAdvertClickListener != null) {
+                        onAdvertClickListener.modifyAdvert(advertList.get(holder.getAdapterPosition()));
+                    }
+                }
+            });
             holder.delete.setVisibility(View.VISIBLE);
+            holder.delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onAdvertClickListener != null) {
+                        onAdvertClickListener.deleteMyAdvert(advertList.get(holder.getAdapterPosition()).getId());
+                        advertList.remove(holder.getAdapterPosition());
+                        notifyItemRemoved((holder.getAdapterPosition()));
+                    }
+                }
+            });
         } else {
             holder.modify.setVisibility(View.GONE);
+            holder.modify.setOnClickListener(null);
             holder.delete.setVisibility(View.GONE);
+            holder.delete.setOnClickListener(null);
         }
     }
 
     @Override
     public int getItemCount() {
         return advertList.size();
+    }
+
+    public void setAdvertList(List<Advert> advertList) {
+        this.advertList = advertList;
+        notifyDataSetChanged();
+    }
+
+    public void setOnAdvertClickListener(OnAdvertClickListener onAdvertClickListener) {
+        this.onAdvertClickListener = onAdvertClickListener;
     }
 
     public static class AllListViewHolder extends RecyclerView.ViewHolder {
@@ -76,4 +113,9 @@ public class AllListAdapter extends RecyclerView.Adapter<AllListAdapter.AllListV
         }
     }
 
+    public interface OnAdvertClickListener {
+        void deleteMyAdvert(int advertId);
+
+        void modifyAdvert(Advert advert);
+    }
 }

@@ -22,6 +22,11 @@ import butterknife.OnClick;
 
 public class AddActivity extends AppCompatActivity implements AddScreen {
 
+    public static final String EXTRA_TITLE = "EXTRA_TITLE";
+    public static final String EXTRA_COST = "EXTRA_COST";
+    public static final String EXTRA_DESCRIPTION = "EXTRA_DESCRIPTION";
+    public static final String EXTRA_ID = "EXTRA_ID";
+
     @Inject
     AddPresenter addPresenter;
 
@@ -37,26 +42,32 @@ public class AddActivity extends AppCompatActivity implements AddScreen {
     @BindView(R.id.add_advert_title)
     TextView title;
 
+    private int advertId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
         ButterKnife.bind(this);
 
+        if (getIntent().hasExtra(EXTRA_COST)) {
+            cost.setText(String.valueOf(getIntent().getIntExtra(EXTRA_COST, 0)));
+        }
+
+        if (getIntent().hasExtra(EXTRA_TITLE)) {
+            title.setText(getIntent().getStringExtra(EXTRA_TITLE));
+        }
+
+        if (getIntent().hasExtra(EXTRA_DESCRIPTION)) {
+            desription.setText(getIntent().getStringExtra(EXTRA_DESCRIPTION));
+        }
+
+        if (getIntent().hasExtra(EXTRA_DESCRIPTION)) {
+            desription.setText(getIntent().getStringExtra(EXTRA_DESCRIPTION));
+        }
+
 
         MobSoftApplication.injector.inject(this);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        addPresenter.attachScreen(this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        addPresenter.detachScreen();
     }
 
     @OnClick(R.id.add_advert_add_button)
@@ -76,17 +87,35 @@ public class AddActivity extends AppCompatActivity implements AddScreen {
             }
         }
 
-        addPresenter.addAdvert(title.getText().toString(), desription.getText().toString(), Integer.parseInt(cost.getText().toString()));
+        advertId = -1;
+        if (getIntent().getExtras() != null) {
+            advertId = getIntent().getIntExtra(EXTRA_ID, -1);
+        }
+
+        addPresenter.addAdvert(title.getText().toString(),
+                desription.getText().toString(), Integer.parseInt(cost.getText().toString()), advertId);
     }
 
     @Override
-    public void advertAdded() {
-        onBackPressed();
+    protected void onStart() {
+        super.onStart();
+        addPresenter.attachScreen(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        addPresenter.detachScreen();
     }
 
     @Override
     public void showMessage(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void advertAdded() {
+        onBackPressed();
     }
 }
 

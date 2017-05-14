@@ -2,8 +2,10 @@ package com.example.mobsoft.mobsoft_lab3.ui.mylist;
 
 import android.util.Log;
 
+import com.example.mobsoft.mobsoft_lab3.R;
 import com.example.mobsoft.mobsoft_lab3.interactor.mylist.GetMyAdvertsInteractor;
 import com.example.mobsoft.mobsoft_lab3.interactor.mylist.events.GetAdvertsEvent;
+import com.example.mobsoft.mobsoft_lab3.interactor.mylist.events.RemoveMyAdvertEvent;
 import com.example.mobsoft.mobsoft_lab3.interactor.mylist.model.FetchAdvertRequest;
 import com.example.mobsoft.mobsoft_lab3.ui.Presenter;
 
@@ -68,6 +70,15 @@ public class MyListPresenter extends Presenter<MyListScreen> {
         });
     }
 
+    public void deleteAdvert(final int advertId) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                getMyAdvertsInteractor.deleteAdvert(advertId);
+            }
+        });
+    }
+
 
     public void onEventMainThread(GetAdvertsEvent event) {
         if (event.getThrowable() != null) {
@@ -79,6 +90,25 @@ public class MyListPresenter extends Presenter<MyListScreen> {
         } else {
             if (screen != null) {
                 screen.displayAdverts(event.getAdverts());
+            }
+        }
+    }
+
+    public void onEventMainThread(RemoveMyAdvertEvent event) {
+        if (event.getThrowable() != null) {
+            event.getThrowable().printStackTrace();
+            if (screen != null) {
+                screen.showMessage("error");
+            }
+            Log.e("Networking", "Error reading advertsRecycler", event.getThrowable());
+        } else {
+            if (screen != null) {
+                if (event.isDeletionSuccessfull()) {
+                    screen.showMessage(R.string.my_list_advert_successfully_deleted);
+                    screen.advertDeleted();
+                } else {
+                    screen.showMessage(R.string.my_list_advert_deletion_failed);
+                }
             }
         }
     }

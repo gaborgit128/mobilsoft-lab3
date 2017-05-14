@@ -47,16 +47,19 @@ public class AddPresenter extends Presenter<AddScreen> {
     public void onEventMainThread(AddAdvertEvent addAdvertEvent) {
         if (addAdvertEvent.isAdvertAddedSuccessfully()) {
             screen.advertAdded();
+            screen.showMessage("Success");
         } else {
             screen.showMessage("Advert adding failed");
         }
     }
 
-    public void addAdvert(final String title, final String description, final int cost) {
+    public void addAdvert(final String title, final String description, final int cost, final int id) {
         executor.execute(new Runnable() {
             @Override
             public void run() {
                 Advert advert = new Advert(title, cost, description);
+                advert.setId(id);
+
                 addAvertInteractor.addAdverts(advert);
             }
         });

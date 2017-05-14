@@ -3,6 +3,8 @@ package com.example.mobsoft.mobsoft_lab3.network.advert;
 
 import com.example.mobsoft.mobsoft_lab3.interactor.add.model.AddAdvertResult;
 import com.example.mobsoft.mobsoft_lab3.interactor.mylist.model.AdvertListResponse;
+import com.example.mobsoft.mobsoft_lab3.interactor.mylist.model.DeleteAdvertRequest;
+import com.example.mobsoft.mobsoft_lab3.interactor.mylist.model.DeleteAdvertResponse;
 import com.example.mobsoft.mobsoft_lab3.interactor.mylist.model.FetchAdvertRequest;
 import com.example.mobsoft.mobsoft_lab3.model.Advert;
 
@@ -23,8 +25,11 @@ public interface AdvertApi {
     @POST("Adverts/create")
     Call<AddAdvertResult> advertCreate(@Body Advert data);
 
+    @POST("Adverts/modify")
+    Call<AddAdvertResult> advertModify(@Body Advert data);
+
     @POST("Adverts/delete")
-    Call deleteAdvert(@Body int advertId);
+    Call<DeleteAdvertResponse> deleteAdvert(@Body DeleteAdvertRequest deleteAdvertRequest);
 
     @POST("Adverts/list")
     Call<AdvertListResponse> fetchList(@Body FetchAdvertRequest fetchAdvertRequest);

@@ -1,12 +1,14 @@
 package com.example.mobsoft.mobsoft_lab3.test;
 
 /**
- * Created by Android on 2017. 05. 03..
+ * Created by Android on 2017. 05. 14..
  */
 
 import com.example.mobsoft.mobsoft_lab3.BuildConfig;
 import com.example.mobsoft.mobsoft_lab3.ui.add.AddPresenter;
 import com.example.mobsoft.mobsoft_lab3.ui.add.AddScreen;
+import com.example.mobsoft.mobsoft_lab3.ui.mylist.MyListPresenter;
+import com.example.mobsoft.mobsoft_lab3.ui.mylist.MyListScreen;
 import com.example.mobsoft.mobsoft_lab3.utils.RobolectricDaggerTestRunner;
 
 import org.junit.After;
@@ -22,27 +24,27 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 @RunWith(RobolectricDaggerTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)
-public class AddAdvertTest {
+public class DeleteAdvertTest {
 
-    private AddPresenter addPresenter;
+    private MyListPresenter myListPresenter;
 
     @Before
     public void setup() throws Exception {
         setTestInjector();
-        addPresenter = new AddPresenter();
+        myListPresenter = new MyListPresenter();
     }
 
     @Test
-    public void testAddAdvert() {
-        AddScreen mainScreen = mock(AddScreen.class);
-        addPresenter.attachScreen(mainScreen);
-        addPresenter.addAdvert("Autó", "Jó állapotú", 10000, 1);
+    public void testDeleteAdvert() {
+        MyListScreen myScreen = mock(MyListScreen.class);
+        myListPresenter.attachScreen(myScreen);
+        myListPresenter.deleteAdvert(-1);
 
-        verify(mainScreen, times(1)).advertAdded();
+        verify(myScreen, times(1)).advertDeleted();
     }
 
     @After
     public void tearDown() {
-        addPresenter.detachScreen();
+        myListPresenter.detachScreen();
     }
 }
