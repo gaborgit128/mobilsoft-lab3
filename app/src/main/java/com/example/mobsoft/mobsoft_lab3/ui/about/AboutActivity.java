@@ -2,6 +2,7 @@ package com.example.mobsoft.mobsoft_lab3.ui.about;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.mobsoft.mobsoft_lab3.MobSoftApplication;
@@ -45,5 +46,9 @@ public class AboutActivity extends AppCompatActivity implements AboutScreen {
     @Override
     public void showMessage(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    public void forceCrash(View view) {
+        throw new RuntimeException("This is a crash");
     }
 }

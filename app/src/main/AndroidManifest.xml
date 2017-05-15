@@ -21,6 +21,10 @@
         <activity android:name=".ui.about.AboutActivity"/>
         <activity android:name=".ui.add.AddActivity"/>
         <activity android:name=".ui.mylist.MyListActivity"/>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="16c41a9c78bb2092e8fcad7ca40cf7014e4ffa44" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

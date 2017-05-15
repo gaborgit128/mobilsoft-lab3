@@ -22,7 +22,7 @@ public class MemoryRepository implements Repository {
 
     @Override
     public void open(Context context) {
-        User user = new User("Paulin", 100);
+        /*User user = new User("Bela", 100);
         Advert advert1 = new Advert("Computer", 10000, "Computer in good shape to sell");
         advert1.setUser(user);
         advert1.setId(-1);
@@ -32,7 +32,7 @@ public class MemoryRepository implements Repository {
         advert2.setId(-2);
 
         adverts.add(advert1);
-        adverts.add(advert2);
+        adverts.add(advert2);*/
     }
 
     @Override
